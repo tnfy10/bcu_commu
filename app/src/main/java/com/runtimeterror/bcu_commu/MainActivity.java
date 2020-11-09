@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment;
     BoardFragment boardFragment;
     SetFragment setFragment;
+    ScheduleFragment scheduleFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         boardFragment = new BoardFragment();
         setFragment = new SetFragment();
+        scheduleFragment = new ScheduleFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
@@ -33,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.tabHome:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+                        return true;
+                    case R.id.tabSchedule:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, scheduleFragment).commit();
                         return true;
                     case R.id.tabBoard:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, boardFragment).commit();

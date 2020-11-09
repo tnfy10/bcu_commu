@@ -6,10 +6,6 @@
     android:orientation="vertical"
     tools:context=".HomeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="홈 화면"
-        android:textSize="50sp" />
-
+    <include layout="@layout/topnavi"/>
+    <include layout="@layout/redirect_site" />
 </LinearLayout>

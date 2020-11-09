@@ -10,6 +10,13 @@
         android:title="홈" />
 
     <item
+        android:id="@+id/tabSchedule"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_users"
+        android:title="일정" />
+
+    <item
         android:id="@+id/tabBoard"
         app:showAsAction="ifRoom"
         android:enabled="true"
