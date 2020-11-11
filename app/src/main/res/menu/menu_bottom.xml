@@ -17,13 +17,6 @@
         android:title="일정" />
 
     <item
-        android:id="@+id/tabBoard"
-        app:showAsAction="ifRoom"
-        android:enabled="true"
-        android:icon="@drawable/ic_action_board"
-        android:title="게시판" />
-
-    <item
         android:id="@+id/tabSet"
         app:showAsAction="ifRoom"
         android:enabled="true"

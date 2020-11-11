@@ -12,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     HomeFragment homeFragment;
-    BoardFragment boardFragment;
     SetFragment setFragment;
     ScheduleFragment scheduleFragment;
 
@@ -22,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         homeFragment = new HomeFragment();
-        boardFragment = new BoardFragment();
         setFragment = new SetFragment();
         scheduleFragment = new ScheduleFragment();
 
@@ -38,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.tabSchedule:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, scheduleFragment).commit();
-                        return true;
-                    case R.id.tabBoard:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, boardFragment).commit();
                         return true;
                     case R.id.tabSet:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, setFragment).commit();
