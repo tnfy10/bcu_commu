@@ -66,28 +66,28 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/freeNotice1"
+            android:id="@+id/freePost1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물1"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/freeNotice2"
+            android:id="@+id/freePost2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물2"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/freeNotice3"
+            android:id="@+id/freePost3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물3"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/freeNotice4"
+            android:id="@+id/freePost4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -128,28 +128,28 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/subjNotice1"
+            android:id="@+id/subjPost1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물1"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/subjNotice2"
+            android:id="@+id/subjPost2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물2"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/subjNotice3"
+            android:id="@+id/subjPost3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물3"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/subjNotice4"
+            android:id="@+id/subjPost4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -189,28 +189,28 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/meetNotice1"
+            android:id="@+id/meetPost1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물1"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/meetNotice2"
+            android:id="@+id/meetPost2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물2"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/meetNotice3"
+            android:id="@+id/meetPost3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="게시물3"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/meetNotice4"
+            android:id="@+id/meetPost4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"

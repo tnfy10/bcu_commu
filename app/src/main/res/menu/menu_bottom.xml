@@ -13,7 +13,7 @@
         android:id="@+id/tabSchedule"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/ic_action_users"
+        android:icon="@drawable/ic_action_calendar"
         android:title="일정" />
 
     <item
