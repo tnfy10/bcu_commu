@@ -1,6 +1,7 @@
 package com.runtimeterror.bcu_commu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -33,6 +34,70 @@ public class SetFragment extends Fragment {
         txtVer = setView.findViewById(R.id.txtVer);
         txtVer.setText(getVersionInfo(setView.getContext()));
 
+        userId = setView.findViewById(R.id.userId);
+        userName = setView.findViewById(R.id.userName);
+        userStdNum = setView.findViewById(R.id.userStdNum);
+
+        imgChgBtn = setView.findViewById(R.id.imgChgBtn);
+        imgChgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO DO
+            }
+        });
+
+        PWChgBtn = setView.findViewById(R.id.PWChgBtn);
+        PWChgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent PWChgIntent = new Intent(setView.getContext(), PasswordChgActivity.class);
+                startActivity(PWChgIntent);
+            }
+        });
+
+        QnABtn = setView.findViewById(R.id.QnABtn);
+        QnABtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO DO
+            }
+        });
+
+        appNoticeBtn = setView.findViewById(R.id.appNoticeBtn);
+        appNoticeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent noticeIntent = new Intent(setView.getContext(), NoticeActivity.class);
+                startActivity(noticeIntent);
+            }
+        });
+
+        privacyInfoBtn = setView.findViewById(R.id.privacyInfoBtn);
+        privacyInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent privacyInfoIntent = new Intent(setView.getContext(), PrivacyInfoActivity.class);
+                startActivity(privacyInfoIntent);
+            }
+        });
+
+        quitBtn = setView.findViewById(R.id.quitBtn);
+        quitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO DO
+            }
+        });
+
+        logoutBtn = setView.findViewById(R.id.logoutBtn);
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO DO
+            }
+        });
+
+
         return setView;
     }
 
@@ -45,5 +110,4 @@ public class SetFragment extends Fragment {
         }catch(PackageManager.NameNotFoundException e) {}
         return version;
     }
-
 }
