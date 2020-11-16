@@ -154,15 +154,6 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/QnABtn"
-                    android:background="?attr/selectableItemBackground"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left|center"
-                    android:text="문의하기"
-                    android:textSize="20dp"/>
-
-                <Button
                     android:id="@+id/appNoticeBtn"
                     android:background="?attr/selectableItemBackground"
                     android:layout_width="match_parent"

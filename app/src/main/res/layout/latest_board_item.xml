@@ -38,7 +38,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="게시판 제목"
-                        android:textSize="30dp"/>
+                        android:textSize="30dp"
+                        android:textColor="@color/colorBlack"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -65,21 +66,24 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="게시물1"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/txtPost2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="게시물2"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/colorBlack"/>
             <TextView
                 android:id="@+id/txtPost3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="게시물3"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/colorBlack"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

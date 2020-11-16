@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NoticeActivity extends AppCompatActivity {
-    final String title = "공지사항";
+public class MeetBoardActivity extends AppCompatActivity {
+    final String title = "모임게시판";
     TextView txtTitle;
     ImageView prevBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notice);
+        setContentView(R.layout.activity_meetboard);
         txtTitle = findViewById(R.id.txtTitle);
         txtTitle.setText(title);
 
@@ -30,14 +30,14 @@ public class NoticeActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView postList = findViewById(R.id.noticePostList);
+        RecyclerView postList = findViewById(R.id.meetPostList);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         postList.setLayoutManager(layoutManager);
         final PostAdapter postAdapter = new PostAdapter();
 
-        for(int i=0; i<10; i++){
-            postAdapter.addItem(new Post("공지사항", "공지사항공지사항공지사항공지사항", "운영자"));
+        for(int i=0; i<30; i++){
+            postAdapter.addItem(new Post("제목제목제목", "내용내용내용내용내용내용내용내용내용내용", "김길동"));
         }
 
         postList.setAdapter(postAdapter);

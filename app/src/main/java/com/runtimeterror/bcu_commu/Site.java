@@ -2,9 +2,11 @@ package com.runtimeterror.bcu_commu;
 
 public class Site {
     String name;
+    int code;
 
-    public Site(String name) {
+    public Site(String name, int code) {
         this.name = name;
+        this.code = code;
     }
 
     public String getName() {
@@ -13,5 +15,13 @@ public class Site {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

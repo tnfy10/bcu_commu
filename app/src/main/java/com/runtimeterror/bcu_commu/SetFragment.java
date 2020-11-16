@@ -21,7 +21,6 @@ public class SetFragment extends Fragment {
 
     Button imgChgBtn;
     Button PWChgBtn;
-    Button QnABtn;
     Button appNoticeBtn;
     Button privacyInfoBtn;
     Button quitBtn;
@@ -52,14 +51,6 @@ public class SetFragment extends Fragment {
             public void onClick(View v) {
                 Intent PWChgIntent = new Intent(setView.getContext(), PasswordChgActivity.class);
                 startActivity(PWChgIntent);
-            }
-        });
-
-        QnABtn = setView.findViewById(R.id.QnABtn);
-        QnABtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TO DO
             }
         });
 
