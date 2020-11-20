@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,8 +14,16 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordChgActivity extends AppCompatActivity {
     final String title = "비밀번호 변경";
+    String nowPW, newPW, newPW2;
+
     TextView txtTitle;
     ImageView prevBtn;
+    Button chgPWBtn;
+
+    EditText edtNowPW;
+    EditText edtNewPw, edtNewPW2;
+
+    TextView chkNewPW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +39,31 @@ public class PasswordChgActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        edtNowPW = findViewById(R.id.edtNowPW);
+        edtNewPw = findViewById(R.id.edtNewPW);
+        edtNewPW2 = findViewById(R.id.edtNewPW2);
+
+        chkNewPW = findViewById(R.id.chkNewPW);
+
+        chgPWBtn = findViewById(R.id.chgPWBtn);
+        chgPWBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nowPW = sha256(edtNowPW.getText().toString());
+                newPW = sha256(edtNewPw.getText().toString());
+                newPW2 = sha256(edtNewPW2.getText().toString());
+
+                // TODO - 현재 비밀번호 맞는지 확인하는 코드
+
+                // 새 비밀번호 일치 확인
+                if(!(newPW.equals(newPW2))){
+                    chkNewPW.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
     }
 
     @Override

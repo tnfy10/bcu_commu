@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 public class SetFragment extends Fragment {
@@ -84,10 +85,11 @@ public class SetFragment extends Fragment {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TO DO
+                Intent login = new Intent(setView.getContext(), LoginActivity.class);
+                getActivity().finish();
+                startActivity(login);
             }
         });
-
 
         return setView;
     }

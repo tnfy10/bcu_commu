@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SubjBoardActivity extends AppCompatActivity {
     final String title = "과제게시판";
@@ -37,7 +37,7 @@ public class SubjBoardActivity extends AppCompatActivity {
         final PostAdapter postAdapter = new PostAdapter();
 
         for(int i=0; i<30; i++){
-            postAdapter.addItem(new Post("제목제목제목", "내용내용내용내용내용내용내용내용내용내용", "고길동"));
+            postAdapter.addItem(new Post("과제"+i, "과제내용"+i, "고길동"+i));
         }
 
         postList.setAdapter(postAdapter);
@@ -46,7 +46,11 @@ public class SubjBoardActivity extends AppCompatActivity {
             @Override
             public void onItemClick(PostAdapter.ViewHolder holder, View view, int position) {
                 Post item = postAdapter.getItem(position);
-                Toast.makeText(getApplicationContext(), "미구현\n" + item.getTitle() + "\n" + item.getContent() + "\n" + item.getWriter(), Toast.LENGTH_SHORT).show();
+                Intent detailIntent = new Intent(getApplicationContext(), PostDetailActivity.class);
+                detailIntent.putExtra("writer", item.getWriter());
+                detailIntent.putExtra("title", item.getTitle());
+                detailIntent.putExtra("content", item.getContent());
+                startActivity(detailIntent);
             }
         });
     }

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".PostDetailActivity">
 
-    <include layout="@layout/board_detail_title" />
+    <include layout="@layout/title" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/userInfo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"

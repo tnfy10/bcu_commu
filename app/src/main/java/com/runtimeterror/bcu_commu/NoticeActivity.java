@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,9 +37,7 @@ public class NoticeActivity extends AppCompatActivity {
         postList.setLayoutManager(layoutManager);
         final PostAdapter postAdapter = new PostAdapter();
 
-        for(int i=0; i<10; i++){
-            postAdapter.addItem(new Post("공지사항", "공지사항공지사항공지사항공지사항", "운영자"));
-        }
+        postAdapter.addItem(new Post("부천대 커뮤니티 1.0.0 출시!", "부천대 커뮤니티 앱이 새로 출시되었습니다. 많은 이용바랍니다.", "운영자"));
 
         postList.setAdapter(postAdapter);
 
@@ -46,7 +45,11 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(PostAdapter.ViewHolder holder, View view, int position) {
                 Post item = postAdapter.getItem(position);
-                Toast.makeText(getApplicationContext(), "미구현\n" + item.getTitle() + "\n" + item.getContent() + "\n" + item.getWriter(), Toast.LENGTH_SHORT).show();
+                Intent detailIntent = new Intent(getApplicationContext(), PostDetailActivity.class);
+                detailIntent.putExtra("writer", item.getWriter());
+                detailIntent.putExtra("title", item.getTitle());
+                detailIntent.putExtra("content", item.getContent());
+                startActivity(detailIntent);
             }
         });
     }

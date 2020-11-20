@@ -33,6 +33,20 @@
         app:layout_constraintVertical_bias="0.278" />
 
     <TextView
+        android:id="@+id/textErr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="잘못된 아이디이거나 비밀번호입니다.\n다시 입력해주세요."
+        android:textColor="@color/colorRed"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.515" />
+
+    <TextView
         android:id="@+id/textID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +101,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.452" />
-
+<!-- 보류
     <CheckBox
         android:id="@+id/autoLoginCheck"
         android:layout_width="wrap_content"
@@ -100,8 +114,8 @@
         app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
-
+        app:layout_constraintVertical_bias="0.566" />
+-->
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="234dp"

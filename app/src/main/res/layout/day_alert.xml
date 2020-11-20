@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="370dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/monday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:gravity="left|center"
+            android:background="@color/colorWhite"
+            android:text="월요일"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack" />
+
+        <Button
+            android:id="@+id/tuesday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:gravity="left|center"
+            android:background="@color/colorWhite"
+            android:text="화요일"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack" />
+
+        <Button
+            android:id="@+id/wednesday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:gravity="left|center"
+            android:background="@color/colorWhite"
+            android:text="수요일"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack" />
+
+        <Button
+            android:id="@+id/thursday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:gravity="left|center"
+            android:background="@color/colorWhite"
+            android:text="목요일"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack" />
+
+        <Button
+            android:id="@+id/friday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:gravity="left|center"
+            android:background="@color/colorWhite"
+            android:text="금요일"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+</LinearLayout>

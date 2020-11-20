@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">부천대 커뮤니티</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="privacy1">개인정보 처리방침은 서비스를 제공함에 있어, 개인정보를 어떻게 수집, 이용, 보관, 파기하는지에 대한 정보를 담은 방침을 의미합니다. 개인정보 처리방침은 개인정보보호법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 국내 개인정보 보호 법령을 모두 준수하고 있습니다. 이 약관의 정의는 서비스 이용약관을 따릅니다.</string>
+    <string name="privacy2"></string>
+    <string name="privacy3"></string>
+    <string name="privacy4"></string>
+    <string name="tb_cell_height">50dp</string>
 </resources>

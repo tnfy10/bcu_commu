@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -19,39 +20,28 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/postTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="게시글 제목"
-                android:textSize="17dp"
-                android:textColor="@color/colorBlack"/>
-
-            <TextView
-                android:id="@+id/postContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="게시글 내용"
-                android:textSize="15dp"
-                android:textColor="@color/colorDarkGray"/>
-
-            <LinearLayout
+                android:id="@+id/schdName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="일정 이름"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"/>
 
-                <TextView
-                    android:id="@+id/postWriter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="작성자"
-                    android:textColor="@color/colorDarkGray"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/schdDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일정 날짜"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/schdMemo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="일정 메모"
+                android:textSize="15dp"
+                android:textColor="@color/colorDarkGray"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
