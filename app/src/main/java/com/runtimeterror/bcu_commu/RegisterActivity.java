@@ -25,7 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button viewAgreeBtn;
     Button regConfirmBtn;
 
-    String PW, PW2, encryptPW;
+    String name, stdNum, ID, PW, PW2;
+    final String blankSha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,17 @@ public class RegisterActivity extends AppCompatActivity {
         viewAgreeBtn = findViewById(R.id.viewAgreeBtn);
         regConfirmBtn = findViewById(R.id.regConfirmBtn);
 
+        // 아이디 중복 확인
+/*
+        edtID.getOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    // TODO
+                }
+            }
+        });
+*/
         /* // 개인정보 수집 동의서 버튼
         viewAgreeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,15 +68,30 @@ public class RegisterActivity extends AppCompatActivity {
         regConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PW = edtPW.getText().toString();
-                PW2 = edtPW2.getText().toString();
+                /*    오라클 연동
+                try {
+                    String result;
 
-                if(PW.equals(PW2)){
-                    encryptPW = sha256(PW);
-                    Log.d("encrypt: ", encryptPW); // 암호화 디버그
-                } else {
-                    txtPWErr.setVisibility(View.VISIBLE);
+                    name = edtName.getText().toString();
+                    stdNum = edtStdNum.getText().toString();
+                    ID = edtID.getText().toString();
+                    PW = sha256(edtPW.getText().toString());
+                    PW2 = sha256(edtPW2.getText().toString());
+
+                    if(name.equals("") || stdNum.equals("") || ID.equals("") || PW.equals(blankSha256) || PW2.equals(blankSha256)){
+                        Log.d("빈칸", "빈칸 있음.");
+                    }else{
+                        if(PW.equals(PW2)){
+                            Register task = new Register();
+                            result = task.execute(ID, stdNum, PW, name).get();
+                        } else {
+                            txtPWErr.setVisibility(View.VISIBLE);
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.i("DBtest", ".....ERROR.....!");
                 }
+                 */
             }
         });
     }

@@ -60,10 +60,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //ID = edtID.getText().toString();
-                //PW = sha256(edtPW.getText().toString());
+                PW = sha256(edtPW.getText().toString());
 
                 Intent login = new Intent(getApplicationContext(), MainActivity.class);
-                //Log.d("pw", PW);
+                Log.d("pw", PW);
                 // 로그인 테스트
                 startActivity(login);
             }
