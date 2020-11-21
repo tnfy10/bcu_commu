@@ -48,9 +48,8 @@ public class ScheduleFragment extends Fragment {
             }
         });
 
-        /* 데이터 받아오면 추가
-        scheduleAdapter.addItem(new Schedule(title, date, memo));
-         */
+        // 데이터 받아오면 추가
+        //scheduleAdapter.addItem(new Schedule(title, date, memo));
         
         schdList.setAdapter(scheduleAdapter);
         return scheduleView;

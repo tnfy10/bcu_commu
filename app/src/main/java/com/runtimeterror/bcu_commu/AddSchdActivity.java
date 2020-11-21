@@ -51,9 +51,11 @@ public class AddSchdActivity extends AppCompatActivity {
                 title = setSchdName.getText().toString();
                 memo = setSchdMemo.getText().toString();
 
-                if(date.length()<9 || title.length()==0 || memo.length()==0){
+                if(date.length()<9 || title.length()==0 || memo.length()==0){   // 빈칸 체크 보완 필요
                     checkBlank.setVisibility(View.VISIBLE);
                 } else {
+                    // 설정한 일정 저장
+
                     finish();
                 }
             }

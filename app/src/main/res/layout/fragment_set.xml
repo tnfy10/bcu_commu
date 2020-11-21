@@ -23,8 +23,8 @@
         android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="58dp">
 
         <LinearLayout
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left|center"
-                    android:text="프로필 이미지 변경"
+                    android:text="프로필 이미지 설정"
                     android:textSize="20dp"/>
 
                 <Button

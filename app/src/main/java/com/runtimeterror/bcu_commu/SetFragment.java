@@ -1,6 +1,7 @@
 package com.runtimeterror.bcu_commu;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -11,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SetFragment extends Fragment {
     TextView txtVer;
@@ -42,7 +46,7 @@ public class SetFragment extends Fragment {
         imgChgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TO DO
+                imgChgAlert(setView);
             }
         });
 
@@ -77,7 +81,7 @@ public class SetFragment extends Fragment {
         quitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TO DO
+                quitAlert(setView);
             }
         });
 
@@ -92,6 +96,48 @@ public class SetFragment extends Fragment {
         });
 
         return setView;
+    }
+
+    public void imgChgAlert(View v){
+        final List<String> ListItems = new ArrayList<>();
+        ListItems.add("프로필 이미지 변경");
+        ListItems.add("프로필 이미지 삭제");
+        final CharSequence[] items =  ListItems.toArray(new String[ ListItems.size()]);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("프로필 이미지 설정");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int pos) {
+                switch(pos){
+                    case 0:
+                        // TODO - 프로필 이미지 변경
+                        break;
+                    case 1:
+                        // TODO - 프로필 이미지 삭제
+                        break;
+                }
+            }
+        });
+        builder.show();
+    }
+
+    public void quitAlert(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("회원탈퇴");
+        builder.setMessage("정말로 회원탈퇴를 하시겠습니까?");
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO - 회원탈퇴 처리
+                    }
+                });
+        builder.setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
     }
 
     // 앱 버전 반환
