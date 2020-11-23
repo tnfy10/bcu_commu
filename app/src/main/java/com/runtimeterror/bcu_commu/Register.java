@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Register extends AsyncTask<String, Void, String> {
+    final String ipAddr = "172.26.107.155";
     String sendMsg, receiveMsg;
 
     @Override
@@ -19,7 +20,7 @@ public class Register extends AsyncTask<String, Void, String> {
             String str;
 
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://15.164.250.53:8080/android/register.jsp");
+            URL url = new URL("http://" + ipAddr + "/android/register.jsp");
             // http://ip주소:포트번호/이클립스프로젝트명/WebContent아래폴더/androidDB.jsp
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

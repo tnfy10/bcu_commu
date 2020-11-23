@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         regConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*    오라클 연동
+
                 try {
                     String result;
 
@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.i("DBtest", ".....ERROR.....!");
                 }
-                 */
+
             }
         });
     }
