@@ -1,6 +1,6 @@
-package com.runtimeterror.bcu_commu;
-
 import android.os.AsyncTask;
+
+import com.runtimeterror.bcu_commu.IpAddress;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Register extends AsyncTask<String, Void, String> {
+public class Login extends AsyncTask<String, Void, String> {
     String sendMsg, receiveMsg;
 
     @Override
@@ -28,7 +28,7 @@ public class Register extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "id=" + strings[0] + "&stdNum=" + strings[1] + "&pw=" + strings[2] + "&name=" + strings[3];
+            sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
 
             osw.write(sendMsg);
             osw.flush();

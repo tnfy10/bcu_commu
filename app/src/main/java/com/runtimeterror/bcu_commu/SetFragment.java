@@ -99,6 +99,17 @@ public class SetFragment extends Fragment {
     }
 
     public void imgChgAlert(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("프로필 이미지 설정");
+        builder.setMessage("아직 미구현된 기능입니다.");
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
+        /*
         final List<String> ListItems = new ArrayList<>();
         ListItems.add("프로필 이미지 변경");
         ListItems.add("프로필 이미지 삭제");
@@ -119,6 +130,7 @@ public class SetFragment extends Fragment {
             }
         });
         builder.show();
+         */
     }
 
     public void quitAlert(View v){

@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+    final String blankSha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
     String ID, PW;
 
     Button loginBtn;
@@ -66,6 +67,27 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("pw", PW);
                 // 로그인 테스트
                 startActivity(login);
+/*
+                try {
+                    String result;
+
+                    ID = edtID.getText().toString();
+                    PW = sha256(edtPW.getText().toString());
+
+                    if(ID.equals("")||PW.equals(blankSha256)){
+                        Log.d("빈칸", "빈칸 있음.");
+                    }else{
+                        if(PW.equals()){
+                            Register task = new Register();
+                            result = task.execute(ID, PW).get();
+                        } else {
+                            textErr.setVisibility(View.VISIBLE);
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.i("DBtest", ".....ERROR.....!");
+                }
+ */
             }
         });
 
@@ -80,38 +102,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-/*
-    public static void Login(String ID, String PW){
-        new Thread(){
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("http://");
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setDoOutput(true);
-                    connection.setDoInput(true);
-
-                    InputStream is = connection.getInputStream();
-                    StringBuilder sb = new StringBuilder();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
-                    String result;
-                    while((result = br.readLine())!=null){
-                        sb.append(result+"\n");
-                    }
-
-                    result = sb.toString();
-                    Log.d("server", result);
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-    }
-*/
 
     // SHA-256 암호화
     public static String sha256(String str){

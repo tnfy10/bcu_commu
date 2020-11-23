@@ -1,7 +1,9 @@
 package com.runtimeterror.bcu_commu;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     TextView txtIDErr;
     TextView txtPWErr;
+    TextView txtAgree;
+    TextView txtRefusal;
 
     Button viewAgreeBtn;
     Button regConfirmBtn;
@@ -41,36 +45,27 @@ public class RegisterActivity extends AppCompatActivity {
 
         txtIDErr = findViewById(R.id.IDErrMsg);
         txtPWErr = findViewById(R.id.PWErrMsg);
+        txtAgree = findViewById(R.id.txtAgree);
+        txtRefusal = findViewById(R.id.txtRefusal);
 
         viewAgreeBtn = findViewById(R.id.viewAgreeBtn);
         regConfirmBtn = findViewById(R.id.regConfirmBtn);
 
-        // 아이디 중복 확인
-/*
-        edtID.getOnFocusChangeListener(new View.OnFocusChangeListener(){
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
-                    // TODO
-                }
-            }
-        });
-*/
-        /* // 개인정보 수집 동의서 버튼
+        // 개인정보 수집 동의서 버튼
         viewAgreeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TO DO
+                privateAlert(v);
             }
         });
-         */
+
         // 가입완료 버튼
         regConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 try {
                     String result;
+                    Boolean check;
 
                     name = edtName.getText().toString();
                     stdNum = edtStdNum.getText().toString();
@@ -84,6 +79,12 @@ public class RegisterActivity extends AppCompatActivity {
                         if(PW.equals(PW2)){
                             Register task = new Register();
                             result = task.execute(ID, stdNum, PW, name).get();
+                            check = Boolean.parseBoolean(result);
+                            if(check){
+                                regCompleteAlert(v);
+                            }else {
+                                txtIDErr.setVisibility(View.VISIBLE);
+                            }
                         } else {
                             txtPWErr.setVisibility(View.VISIBLE);
                         }
@@ -91,9 +92,45 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.i("DBtest", ".....ERROR.....!");
                 }
-
             }
         });
+    }
+
+    public void privateAlert(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("개인정보 수집동의");
+        builder.setMessage("개인정보 수집에 동의하십니까?");
+        builder.setPositiveButton("동의",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        txtAgree.setVisibility(View.VISIBLE);
+                        txtRefusal.setVisibility(View.INVISIBLE);
+                        regConfirmBtn.setEnabled(true);
+                    }
+                });
+        builder.setNegativeButton("거부",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        txtAgree.setVisibility(View.INVISIBLE);
+                        txtRefusal.setVisibility(View.VISIBLE);
+                        regConfirmBtn.setEnabled(false);
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
+    }
+
+    public void regCompleteAlert(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("회원가입 성공");
+        builder.setMessage("확인을 누르고 로그인 페이지에서 다시 로그인해주세요.");
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+        builder.show();
     }
 
     // SHA-256 암호화
