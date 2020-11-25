@@ -9,14 +9,20 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+
+import java.util.concurrent.ExecutionException;
+
+import static android.os.Build.ID;
 
 public class SetFragment extends Fragment {
     TextView txtVer;
@@ -173,7 +179,14 @@ public class SetFragment extends Fragment {
         builder.setPositiveButton("확인",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // TODO - 회원탈퇴 처리
+                        sqlDB = myHelper.getWritableDatabase();
+                        sqlDB.execSQL("DROP TABLE IF EXISTS userTBL");
+                        sqlDB.close();
+                        Intent login = new Intent(getContext(), LoginActivity.class);
+                        login.putExtra("isQuit", true);
+                        login.putExtra("id", userId.getText().toString());
+                        getActivity().finish();
+                        startActivity(login);
                     }
                 });
         builder.setNegativeButton("취소",

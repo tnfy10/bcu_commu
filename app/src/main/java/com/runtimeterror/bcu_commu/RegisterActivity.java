@@ -80,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Register task = new Register();
                             result = task.execute(ID, stdNum, PW, name).get();
                             check = Boolean.parseBoolean(result);
+                            Log.d("check", check.toString());
                             if(check){
                                 regCompleteAlert(v);
                             }else {
