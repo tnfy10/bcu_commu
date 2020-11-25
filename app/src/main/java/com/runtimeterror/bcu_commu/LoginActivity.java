@@ -12,10 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
     final String blankSha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
@@ -64,17 +66,16 @@ public class LoginActivity extends AppCompatActivity {
                         check = Boolean.parseBoolean(result);
                         if(check){
                             sqlDB = myHelper.getWritableDatabase();
-                            if(!checkTable(sqlDB)) {
-                                sqlDB.execSQL("CREATE TABLE  userTBL ( uId CHAR(20), uName CHAR(20), uStdNum CHAR(10));");
-                            }else{
+                            if(checkTable(sqlDB)) {
                                 sqlDB.execSQL("DROP TABLE IF EXISTS userTBL");
-                                sqlDB.execSQL("CREATE TABLE  userTBL ( uId CHAR(20), uName CHAR(20), uStdNum CHAR(10));");
                             }
+                            sqlDB.execSQL("CREATE TABLE  userTBL ( uId CHAR(20), uName CHAR(20), uStdNum CHAR(10));");
 
                             String result2;
 
                             User task2 = new User();
                             result2 = task2.execute(ID).get();
+                            Log.d("result2", result2);
 
                             String[] splited = result2.split(",");
                             name = splited[0];
@@ -82,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             sqlDB.execSQL("INSERT INTO userTBL VALUES ( '" + ID + "', '" + name + "', '" + stdNum + "');" );
                             sqlDB.close();
-                            finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }else{
                             textErr.setVisibility(View.VISIBLE);
@@ -103,6 +103,41 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(register);
             }
         });
+
+        /* 회원탈퇴 로직
+         * setFragment에서 회원 DB의 내용을 지울 경우 앱이 죽는 상황이 발생
+         * => SQLite의 setFragment 테이블은 DROP문으로 삭제
+         * => INTENT문과 함께 PUTEXTRA로 ID값을 로그인 액티비티로 전달
+         * => 단, 로그인 액티비티가 회원탈퇴에 의해서 불려진 것인지 구분하기 위해 Boolean형으로 getIsQuit 변수 선언
+         * => getIsQuit가 True라면 회원탈퇴 진행 (False라면 진행하지 않음)
+         */
+
+        Boolean getIsQuit;
+        if (getIntent().getBooleanExtra("isQuit", false)) getIsQuit = true;
+        else getIsQuit = false;
+        String quitId = getIntent().getStringExtra("id");
+
+        Log.d("id", getIsQuit.toString());
+        if(getIsQuit){
+            Withdrawal task = new Withdrawal();
+            try {
+                String result = task.execute(quitId).get();
+                Boolean check = Boolean.parseBoolean(result);
+                if(check){
+                    Toast.makeText(getApplicationContext(), "회원탈퇴에 성공하셨습니다.", Toast.LENGTH_SHORT);
+                    getIsQuit = false;
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "회원탈퇴에 실패하셨습니다.", Toast.LENGTH_SHORT);
+                    getIsQuit = false;
+                }
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     private boolean checkTable( SQLiteDatabase db){
