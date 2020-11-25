@@ -5,6 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +17,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SetFragment extends Fragment {
     TextView txtVer;
@@ -31,6 +31,9 @@ public class SetFragment extends Fragment {
     Button quitBtn;
     Button logoutBtn;
 
+    SQLiteDatabase sqlDB;
+    myDBHelper myHelper;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup setView = (ViewGroup) inflater.inflate(R.layout.fragment_set, container, false);
@@ -41,6 +44,19 @@ public class SetFragment extends Fragment {
         userId = setView.findViewById(R.id.userId);
         userName = setView.findViewById(R.id.userName);
         userStdNum = setView.findViewById(R.id.userStdNum);
+
+        myHelper = new myDBHelper(setView.getContext());
+        sqlDB = myHelper.getReadableDatabase();
+        Cursor cursor;
+        cursor = sqlDB.rawQuery("SELECT * FROM userTBL;", null);
+        cursor.moveToNext();
+
+        userId.setText(cursor.getString(0));
+        userName.setText(cursor.getString(1));
+        userStdNum.setText(cursor.getString(2));
+
+        cursor.close();
+        sqlDB.close();
 
         imgChgBtn = setView.findViewById(R.id.imgChgBtn);
         imgChgBtn.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +105,9 @@ public class SetFragment extends Fragment {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sqlDB = myHelper.getWritableDatabase();
+                sqlDB.execSQL("DROP TABLE IF EXISTS userTBL");
+                sqlDB.close();
                 Intent login = new Intent(setView.getContext(), LoginActivity.class);
                 getActivity().finish();
                 startActivity(login);
@@ -131,6 +150,20 @@ public class SetFragment extends Fragment {
         });
         builder.show();
          */
+    }
+
+    public class myDBHelper extends SQLiteOpenHelper {
+        public myDBHelper(Context context) {
+            super(context, "userDB", null, 1);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        }
     }
 
     public void quitAlert(View v){
