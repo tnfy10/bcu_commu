@@ -19,9 +19,7 @@ public class User extends AsyncTask<String, Void, String> {
         try {
             String str;
 
-            // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
             URL url = new URL("http://" + IpAddress.ip + "/android/userData.jsp");
-            // http://ip주소:포트번호/이클립스프로젝트명/WebContent아래폴더/androidDB.jsp
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

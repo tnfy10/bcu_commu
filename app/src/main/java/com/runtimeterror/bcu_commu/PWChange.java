@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Login extends AsyncTask<String, Void, String> {
+public class PWChange extends AsyncTask<String, Void, String> {
     String sendMsg, receiveMsg;
 
     @Override
@@ -18,7 +18,7 @@ public class Login extends AsyncTask<String, Void, String> {
         try {
             String str;
 
-            URL url = new URL("http://" + IpAddress.ip + "/android/login.jsp");
+            URL url = new URL("http://" + IpAddress.ip + "/android/PWChange.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -26,7 +26,7 @@ public class Login extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
+            sendMsg = "id=" + strings[0] + "&pw=" + strings[1] + "&newPw=" + strings[2];
 
             osw.write(sendMsg);
             osw.flush();
