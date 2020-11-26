@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PostDetailActivity extends AppCompatActivity {
     ImageView prevBtn;
     ImageView postProfileImg;
+    ImageView deleteBtn;
     TextView txtWriter;
     TextView txtWriteTime;
     TextView detailPostTitle;
@@ -31,6 +33,16 @@ public class PostDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        deleteBtn = findViewById(R.id.deleteBtn);
+        deleteBtn.setVisibility(View.VISIBLE);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO - 게시글 삭제 버튼
+                Toast.makeText(getApplicationContext(), "미구현된 기능", Toast.LENGTH_SHORT).show();
             }
         });
 

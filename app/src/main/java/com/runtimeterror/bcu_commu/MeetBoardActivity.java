@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MeetBoardActivity extends AppCompatActivity {
     final String title = "모임게시판";
     TextView txtTitle;
     ImageView prevBtn;
+    FloatingActionButton meetWriteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,16 @@ public class MeetBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        meetWriteBtn = findViewById(R.id.meetWriteBtn);
+        meetWriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent writeIntent = new Intent(getApplicationContext(), WirtePostActivity.class);
+                writeIntent.putExtra("meetBoard", 2);
+                startActivity(writeIntent);
             }
         });
 

@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class FreeBoardActivity extends AppCompatActivity {
     final String title = "자유게시판";
     TextView txtTitle;
     ImageView prevBtn;
+    FloatingActionButton freeWriteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,16 @@ public class FreeBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        freeWriteBtn = findViewById(R.id.freeWriteBtn);
+        freeWriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent writeIntent = new Intent(getApplicationContext(), WirtePostActivity.class);
+                writeIntent.putExtra("freeBoard", 1);
+                startActivity(writeIntent);
             }
         });
 

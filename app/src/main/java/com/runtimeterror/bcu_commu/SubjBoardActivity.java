@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class SubjBoardActivity extends AppCompatActivity {
     final String title = "과제게시판";
     ImageView prevBtn;
     TextView txtTitle;
+    FloatingActionButton subjWriteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,16 @@ public class SubjBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        subjWriteBtn = findViewById(R.id.subjWriteBtn);
+        subjWriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent writeIntent = new Intent(getApplicationContext(), WirtePostActivity.class);
+                writeIntent.putExtra("subjBoard", 3);
+                startActivity(writeIntent);
             }
         });
 
