@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -26,7 +28,7 @@ public class ScheduleFragment extends Fragment {
     LinearLayoutManager layoutManager;
     ScheduleAdapter scheduleAdapter;
 
-    ImageView addSchdBtn;
+    FloatingActionButton addSchdBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class ScheduleFragment extends Fragment {
         schdList.setLayoutManager(layoutManager);
         scheduleAdapter = new ScheduleAdapter();
 
-        // 어댑터에 아이템 추가
+        // 일정 만들기 버튼
         addSchdBtn = scheduleView.findViewById(R.id.addSchdBtn);
         addSchdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
