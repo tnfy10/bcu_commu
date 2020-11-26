@@ -1,11 +1,14 @@
 package com.runtimeterror.bcu_commu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -14,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment;
     SetFragment setFragment;
     ScheduleFragment scheduleFragment;
+    OnBackPressedListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +48,18 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void setOnBackPressedListener(OnBackPressedListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(listener!=null){
+            listener.onBackPressed();
+        }else{
+            super.onBackPressed();
+        }
     }
 }

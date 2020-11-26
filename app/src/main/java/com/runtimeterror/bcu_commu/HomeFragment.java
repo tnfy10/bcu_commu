@@ -1,24 +1,33 @@
 package com.runtimeterror.bcu_commu;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnBackPressedListener{
     final String freeBoardTitle = "자유게시판";
     final String meetBoardTitle = "모임게시판";
     final String subjBoardTitle = "과제게시판";
 
+    MainActivity activity;
+    long backKeyPressedTime;
+    Toast backPressToast;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup homeView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        activity = (MainActivity) getActivity();
+        backPressToast = Toast.makeText(getContext(),"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT);
 
         // 사이트 이동 리사이클러뷰
         RecyclerView redirectView = homeView.findViewById(R.id.redirectView);
@@ -125,4 +134,22 @@ public class HomeFragment extends Fragment {
         return homeView;
     }
 
+    @Override
+    public void onBackPressed() {
+        //터치간 시간을 줄이거나 늘리고 싶다면 2000을 원하는 시간으로 변경해서 사용하시면 됩니다.
+        if(System.currentTimeMillis() > backKeyPressedTime + 2000){
+            backKeyPressedTime = System.currentTimeMillis();
+            backPressToast.show();
+            return;
+        }
+        if(System.currentTimeMillis() <= backKeyPressedTime + 2000){
+            getActivity().finish();
+            backPressToast.cancel();
+        }
+    }
+
+    @Override public void onResume() {
+        super.onResume();
+        activity.setOnBackPressedListener(this);
+    }
 }

@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             sqlDB.execSQL("INSERT INTO userTBL VALUES ( '" + ID + "', '" + name + "', '" + stdNum + "');" );
                             sqlDB.close();
+                            finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }else{
                             textErr.setVisibility(View.VISIBLE);

@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutionException;
 
 import static android.os.Build.ID;
 
-public class SetFragment extends Fragment {
+public class SetFragment extends Fragment implements OnBackPressedListener{
     TextView txtVer;
     TextView userId;
     TextView userName;
@@ -40,9 +40,15 @@ public class SetFragment extends Fragment {
     SQLiteDatabase sqlDB;
     myDBHelper myHelper;
 
+    MainActivity activity;
+    long backKeyPressedTime;
+    Toast backPressToast;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup setView = (ViewGroup) inflater.inflate(R.layout.fragment_set, container, false);
+        activity = (MainActivity) getActivity();
+        backPressToast = Toast.makeText(getContext(),"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT);
 
         txtVer = setView.findViewById(R.id.txtVer);
         txtVer.setText(getVersionInfo(setView.getContext()));
@@ -121,6 +127,25 @@ public class SetFragment extends Fragment {
         });
 
         return setView;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //터치간 시간을 줄이거나 늘리고 싶다면 2000을 원하는 시간으로 변경해서 사용하시면 됩니다.
+        if(System.currentTimeMillis() > backKeyPressedTime + 2000){
+            backKeyPressedTime = System.currentTimeMillis();
+            backPressToast.show();
+            return;
+        }
+        if(System.currentTimeMillis() <= backKeyPressedTime + 2000){
+            getActivity().finish();
+            backPressToast.cancel();
+        }
+    }
+
+    @Override public void onResume() {
+        super.onResume();
+        activity.setOnBackPressedListener(this);
     }
 
     public void imgChgAlert(View v){
