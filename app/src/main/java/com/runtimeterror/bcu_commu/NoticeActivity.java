@@ -49,6 +49,7 @@ public class NoticeActivity extends AppCompatActivity {
                 detailIntent.putExtra("writer", item.getWriter());
                 detailIntent.putExtra("title", item.getTitle());
                 detailIntent.putExtra("content", item.getContent());
+                detailIntent.putExtra("deleteBtnInvisible", true);
                 startActivity(detailIntent);
             }
         });

@@ -37,7 +37,12 @@ public class PostDetailActivity extends AppCompatActivity {
         });
 
         deleteBtn = findViewById(R.id.deleteBtn);
-        deleteBtn.setVisibility(View.VISIBLE);
+
+        if(getIntent().getBooleanExtra("deleteBtnInvisible", false)){
+            deleteBtn.setVisibility(View.INVISIBLE);
+        }else{
+            deleteBtn.setVisibility(View.VISIBLE);
+        }
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

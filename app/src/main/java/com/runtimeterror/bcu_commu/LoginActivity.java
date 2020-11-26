@@ -1,6 +1,7 @@
 package com.runtimeterror.bcu_commu;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -59,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                     PW = sha256(edtPW.getText().toString());
 
                     if(ID.equals("")||PW.equals(blankSha256)){
-                        Log.d("빈칸", "빈칸 있음.");
+                        blankAlert(v);
                     }else{
                         Login task = new Login();
                         result = task.execute(ID, PW).get();
@@ -138,6 +140,19 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void blankAlert(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("빈칸 있음");
+        builder.setMessage("빈칸이 있지 않은지 다시 확인해주세요.");
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
     }
 
     private boolean checkTable( SQLiteDatabase db){

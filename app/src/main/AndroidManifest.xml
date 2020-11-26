@@ -16,7 +16,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".WirtePostActivity"></activity>
         <activity android:name=".AddSchdActivity" />
-        <activity android:name=".AddTimeActivity" />
         <activity android:name=".PostDetailActivity" />
         <activity android:name=".PasswordChgActivity" />
         <activity android:name=".PrivacyInfoActivity" />

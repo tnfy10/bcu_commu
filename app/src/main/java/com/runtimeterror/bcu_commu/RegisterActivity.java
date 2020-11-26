@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                     PW2 = sha256(edtPW2.getText().toString());
 
                     if(name.equals("") || stdNum.equals("") || ID.equals("") || PW.equals(blankSha256) || PW2.equals(blankSha256)){
-                        Log.d("빈칸", "빈칸 있음.");
+                        blankAlert(v);
                     }else{
                         if(PW.equals(PW2)){
                             Register task = new Register();
@@ -95,6 +95,19 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void blankAlert(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("빈칸 있음");
+        builder.setMessage("빈칸이 있지 않은지 다시 확인해주세요.");
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
     }
 
     public void privateAlert(View v){
