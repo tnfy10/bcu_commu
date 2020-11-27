@@ -59,12 +59,12 @@ public class PostDetailActivity extends AppCompatActivity {
         userInfo = findViewById(R.id.userInfo);
 
         writer = getIntent().getStringExtra("writer");
-        // writeTime = getIntent().getStringExtra("writeTime");
+        writeTime = getIntent().getStringExtra("writeTime");
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
 
         txtWriter.setText(writer);
-        // txtWriteTime.setText(writeTime);
+        txtWriteTime.setText(writeTime);
         detailPostTitle.setText(title);
         detailPostContent.setText(content);
     }

@@ -3,6 +3,7 @@ package com.runtimeterror.bcu_commu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -65,7 +66,7 @@ public class WirtePostActivity extends AppCompatActivity {
 
                 String postdate = format.format(time.getTime());
 
-                Post post = new Post(edtPostName.getText().toString(), edtPost.getText().toString(), userId);
+                Post post = new Post(edtPostName.getText().toString(), edtPost.getText().toString(), userId, postdate);
 
                 Boolean freeBoard = getIntent().getBooleanExtra("freeBoard", false);
                 Boolean meetBoard = getIntent().getBooleanExtra("meetBoard", false);
@@ -74,13 +75,14 @@ public class WirtePostActivity extends AppCompatActivity {
                 if(freeBoard) {
                     try {
                         FreePost task = new FreePost();
-                        String result = task.execute(post.getTitle(), post.getContent(), post.getWriter(), postdate).get();
+                        String result = task.execute(post.getTitle(), post.getContent(), post.getWriter(), post.getTime()).get();
                         Boolean check = Boolean.parseBoolean(result);
 
                         Log.d("check", check.toString());
                         if(check) {
                             Log.d("check", "게시글 작성에 성공하셨습니다.");
                             finish();
+                            startActivity(new Intent(getApplicationContext(), FreeBoardActivity.class));
                         }
                     } catch (ExecutionException e) {
                         e.printStackTrace();
@@ -92,13 +94,14 @@ public class WirtePostActivity extends AppCompatActivity {
                 if(meetBoard) {
                     try {
                         MeetPost task = new MeetPost();
-                        String result = task.execute(post.getTitle(), post.getContent(), post.getWriter(), postdate).get();
+                        String result = task.execute(post.getTitle(), post.getContent(), post.getWriter(), post.getTime()).get();
                         Boolean check = Boolean.parseBoolean(result);
                         Log.d("checdk", check.toString());
 
                         if(check) {
 
                             finish();
+                            startActivity(new Intent(getApplicationContext(), MeetBoardActivity.class));
                         }
                     } catch (ExecutionException e) {
                         e.printStackTrace();
@@ -110,12 +113,13 @@ public class WirtePostActivity extends AppCompatActivity {
                 if(subjBoard) {
                     try {
                         SubjectPost task = new SubjectPost();
-                        String result = task.execute(post.getTitle(), post.getContent(), post.getWriter(), postdate).get();
+                        String result = task.execute(post.getTitle(), post.getContent(), post.getWriter(), post.getTime()).get();
                         Boolean check = Boolean.parseBoolean(result);
 
                         if(check) {
                             Log.d("check", "게시글 작성에 성공하셨습니다.");
                             finish();
+                            startActivity(new Intent(getApplicationContext(), SubjBoardActivity.class));
                         }
                     } catch (ExecutionException e) {
                         e.printStackTrace();

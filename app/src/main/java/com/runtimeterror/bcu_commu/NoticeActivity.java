@@ -37,7 +37,7 @@ public class NoticeActivity extends AppCompatActivity {
         postList.setLayoutManager(layoutManager);
         final PostAdapter postAdapter = new PostAdapter();
 
-        postAdapter.addItem(new Post("부천대 커뮤니티 1.0.0 출시!", "부천대 커뮤니티 앱이 새로 출시되었습니다. 많은 이용바랍니다.", "운영자"));
+        postAdapter.addItem(new Post("부천대 커뮤니티 1.0.0 출시!", "부천대 커뮤니티 앱이 새로 출시되었습니다. 많은 이용바랍니다.", "운영자", null));
 
         postList.setAdapter(postAdapter);
 
