@@ -38,7 +38,7 @@ public class SubjBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent writeIntent = new Intent(getApplicationContext(), WirtePostActivity.class);
-                writeIntent.putExtra("subjBoard", 3);
+                writeIntent.putExtra("subjBoard", true);
                 startActivity(writeIntent);
             }
         });

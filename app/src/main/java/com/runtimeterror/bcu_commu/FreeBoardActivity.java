@@ -38,7 +38,7 @@ public class FreeBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent writeIntent = new Intent(getApplicationContext(), WirtePostActivity.class);
-                writeIntent.putExtra("freeBoard", 1);
+                writeIntent.putExtra("freeBoard", true);
                 startActivity(writeIntent);
             }
         });

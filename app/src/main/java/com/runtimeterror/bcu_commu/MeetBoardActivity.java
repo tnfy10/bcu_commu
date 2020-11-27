@@ -38,7 +38,7 @@ public class MeetBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent writeIntent = new Intent(getApplicationContext(), WirtePostActivity.class);
-                writeIntent.putExtra("meetBoard", 2);
+                writeIntent.putExtra("meetBoard", true);
                 startActivity(writeIntent);
             }
         });
