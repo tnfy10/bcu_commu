@@ -104,9 +104,9 @@ public class HomeFragment extends Fragment implements OnBackPressedListener{
         latestBoardView.setLayoutManager(layoutManager2);
         final LatestBoardAdapter latestBoardAdapter = new LatestBoardAdapter();
 
-        latestBoardAdapter.addItem(new LatestBoard(freeBoardTitle, "게시물1", "게시물2", "게시물3"));
-        latestBoardAdapter.addItem(new LatestBoard(meetBoardTitle, "게시물1", "게시물2", "게시물3"));
-        latestBoardAdapter.addItem(new LatestBoard(subjBoardTitle, "게시물1", "게시물2", "게시물3"));
+        latestBoardAdapter.addItem(new LatestBoard(freeBoardTitle, "-", "-", "-"));
+        latestBoardAdapter.addItem(new LatestBoard(meetBoardTitle, "-", "-", "-"));
+        latestBoardAdapter.addItem(new LatestBoard(subjBoardTitle, "-", "-", "-"));
 
         latestBoardView.setAdapter(latestBoardAdapter);
 
@@ -148,7 +148,8 @@ public class HomeFragment extends Fragment implements OnBackPressedListener{
         }
     }
 
-    @Override public void onResume() {
+    @Override
+    public void onResume() {
         super.onResume();
         activity.setOnBackPressedListener(this);
     }
