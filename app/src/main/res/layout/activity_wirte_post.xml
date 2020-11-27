@@ -30,5 +30,5 @@
         android:ems="10"
         android:hint="내용"
         android:gravity="top"
-        android:inputType="text" />
+        android:inputType="textMultiLine" />
 </LinearLayout>

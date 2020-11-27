@@ -65,6 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="게시물1"
                 android:textSize="20dp"
                 android:textColor="@color/colorBlack"/>
@@ -73,6 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="게시물2"
                 android:textSize="20dp"
                 android:textColor="@color/colorBlack"/>
@@ -81,6 +85,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="게시물3"
                 android:textSize="20dp"
                 android:textColor="@color/colorBlack"/>

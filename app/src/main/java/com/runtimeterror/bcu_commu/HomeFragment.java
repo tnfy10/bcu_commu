@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class HomeFragment extends Fragment implements OnBackPressedListener{
     final String freeBoardTitle = "자유게시판";
     final String meetBoardTitle = "모임게시판";
@@ -23,11 +31,17 @@ public class HomeFragment extends Fragment implements OnBackPressedListener{
     long backKeyPressedTime;
     Toast backPressToast;
 
+    String[] latest;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup homeView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         activity = (MainActivity) getActivity();
         backPressToast = Toast.makeText(getContext(),"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT);
+
+
+
+
 
         // 사이트 이동 리사이클러뷰
         RecyclerView redirectView = homeView.findViewById(R.id.redirectView);
@@ -104,9 +118,12 @@ public class HomeFragment extends Fragment implements OnBackPressedListener{
         latestBoardView.setLayoutManager(layoutManager2);
         final LatestBoardAdapter latestBoardAdapter = new LatestBoardAdapter();
 
-        latestBoardAdapter.addItem(new LatestBoard(freeBoardTitle, "-", "-", "-"));
-        latestBoardAdapter.addItem(new LatestBoard(meetBoardTitle, "-", "-", "-"));
-        latestBoardAdapter.addItem(new LatestBoard(subjBoardTitle, "-", "-", "-"));
+        latest = getPost("free");
+        latestBoardAdapter.addItem(new LatestBoard(freeBoardTitle, latest[0], latest[1], latest[2]));
+        latest = getPost("meet");
+        latestBoardAdapter.addItem(new LatestBoard(meetBoardTitle, latest[0], latest[1], latest[2]));
+        latest = getPost("subj");
+        latestBoardAdapter.addItem(new LatestBoard(subjBoardTitle, latest[0], latest[1], latest[2]));
 
         latestBoardView.setAdapter(latestBoardAdapter);
 
@@ -117,14 +134,17 @@ public class HomeFragment extends Fragment implements OnBackPressedListener{
                 switch(item.getTitle()){
                     case freeBoardTitle:
                         Intent freeIntent = new Intent(homeView.getContext(), FreeBoardActivity.class);
+                        getActivity().finish();
                         startActivity(freeIntent);
                         break;
                     case meetBoardTitle:
                         Intent meetIntent = new Intent(homeView.getContext(), MeetBoardActivity.class);
+                        getActivity().finish();
                         startActivity(meetIntent);
                         break;
                     case subjBoardTitle:
                         Intent subjIntent = new Intent(homeView.getContext(), SubjBoardActivity.class);
+                        getActivity().finish();
                         startActivity(subjIntent);
                         break;
                 }
@@ -132,6 +152,41 @@ public class HomeFragment extends Fragment implements OnBackPressedListener{
         });
 
         return homeView;
+    }
+
+    public String[] getPost(String board){
+        String[] arrayPost = {"-", "-", "-"};
+        try {
+            String result;
+            String post1;
+            String post2;
+            String post3;
+
+            GetLatestPost task = new GetLatestPost();
+            result = task.execute(board).get();
+            Log.d("latestpost", result);
+
+            JSONObject json = null;
+            json = new JSONObject(result);
+
+            JSONArray jarray = json.getJSONArray("latestpost");
+            JSONObject jObject = jarray.getJSONObject(0);
+            post1 = jObject.optString("post1");
+            jObject = jarray.getJSONObject(1);
+            post2 = jObject.optString("post2");
+            jObject = jarray.getJSONObject(2);
+            post3 = jObject.optString("post3");
+            arrayPost[0] = post1;
+            arrayPost[1] = post2;
+            arrayPost[2] = post3;
+        } catch (JSONException je) {
+            je.printStackTrace();
+            Log.d("json", "json 에러");
+        } catch (Exception e){
+            e.printStackTrace();
+            Log.i("DBtest", ".....ERROR.....!");
+        }
+        return arrayPost;
     }
 
     @Override
