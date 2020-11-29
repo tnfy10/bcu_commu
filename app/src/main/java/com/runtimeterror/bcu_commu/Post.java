@@ -5,12 +5,21 @@ public class Post {
     String content;
     String writer;
     String time;
+    String postNum = null;
 
     public Post(String title, String content, String writer, String time) {
         this.title = title;
         this.content = content;
         this.writer = writer;
         this.time = time;
+    }
+
+    public Post(String title, String content, String writer, String time, String postNum) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.time = time;
+        this.postNum = postNum;
     }
 
     public String getTitle() {
@@ -43,5 +52,13 @@ public class Post {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getPostNum() {
+        return postNum;
+    }
+
+    public void setPostNum(String postNum) {
+        this.postNum = postNum;
     }
 }

@@ -66,7 +66,7 @@ public class SubjBoardActivity extends AppCompatActivity {
         Collections.reverse(postArray);
         for(int i=0; i<postArray.size(); i++){
             String[] subjBoard = postArray.get(i);
-            postAdapter.addItem(new Post(subjBoard[2], subjBoard[3], subjBoard[0], subjBoard[1]));
+            postAdapter.addItem(new Post(subjBoard[2], subjBoard[3], subjBoard[0], subjBoard[1], subjBoard[4]));
         }
 
         postList.setAdapter(postAdapter);
@@ -80,6 +80,8 @@ public class SubjBoardActivity extends AppCompatActivity {
                 detailIntent.putExtra("title", item.getTitle());
                 detailIntent.putExtra("content", item.getContent());
                 detailIntent.putExtra("writeTime", item.getTime());
+                detailIntent.putExtra("postNum", item.getPostNum());
+                detailIntent.putExtra("board", "subj");
                 startActivity(detailIntent);
             }
         });
@@ -92,6 +94,7 @@ public class SubjBoardActivity extends AppCompatActivity {
             String post_time;
             String post_name;
             String post_content;
+            String post_num;
 
             GetBoard task = new GetBoard();
             result = task.execute(board).get();
@@ -103,18 +106,20 @@ public class SubjBoardActivity extends AppCompatActivity {
             JSONArray jarray = json.getJSONArray("board");
             for(int i=0; i<jarray.length(); i++){
                 HashMap map = new HashMap<>();
-                String[] arrayPost = new String[4];
+                String[] arrayPost = new String[5];
                 JSONObject jObject = jarray.getJSONObject(i);
 
                 user_id = jObject.optString("user_id");
                 post_time = jObject.optString("post_time");
                 post_name = jObject.optString("post_name");
                 post_content = jObject.optString("post_content");
+                post_num = jObject.optString("post_num");
 
                 arrayPost[0] = user_id;
                 arrayPost[1] = post_time;
                 arrayPost[2] = post_name;
                 arrayPost[3] = post_content;
+                arrayPost[4] = post_num;
 
                 postArray.add(arrayPost);
             }
