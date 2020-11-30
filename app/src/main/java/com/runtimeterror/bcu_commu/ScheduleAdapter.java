@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder>{
+public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder> implements OnSchdItemClickListener{
     ArrayList<Schedule> items = new ArrayList<Schedule>();
+    OnSchdItemClickListener listener;
 
     @NonNull
     @Override
@@ -19,7 +20,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.schedule_item, parent, false);
 
-        return new ViewHolder(itemView);
+        return new ViewHolder(itemView, this);
     }
 
     @Override
@@ -49,17 +50,39 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         items.set(position, item);
     }
 
+    public void setOnItemClickListener(OnSchdItemClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onItemClick(ViewHolder holder, View view, int position) {
+        if(listener != null){
+            listener.onItemClick(holder, view, position);
+        }
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView schdName;
         TextView schdMemo;
         TextView schdDate;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView, final OnSchdItemClickListener listener){
             super(itemView);
 
             schdName = itemView.findViewById(R.id.schdName);
             schdMemo = itemView.findViewById(R.id.schdMemo);
             schdDate = itemView.findViewById(R.id.schdDate);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+
+                    if(listener != null){
+                        listener.onItemClick(ViewHolder.this, v, position);
+                    }
+                }
+            });
         }
 
         public void setItem(Schedule item){

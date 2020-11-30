@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         setFragment = new SetFragment();
-        scheduleFragment = new ScheduleFragment();
+
+        String chgSchd = getIntent().getStringExtra("schd");
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
                     case R.id.tabSchedule:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, scheduleFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, new ScheduleFragment()).commit();
                         return true;
                     case R.id.tabSet:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, setFragment).commit();

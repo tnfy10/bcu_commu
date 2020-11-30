@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WirtePostActivity"></activity>
+        <activity android:name=".DetailSchdActivity"></activity>
+        <activity android:name=".WirtePostActivity" />
         <activity android:name=".AddSchdActivity" />
         <activity android:name=".PostDetailActivity" />
         <activity android:name=".PasswordChgActivity" />

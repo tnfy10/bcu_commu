@@ -1,6 +1,7 @@
 package com.runtimeterror.bcu_commu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 public class AddSchdActivity extends AppCompatActivity {
     String date, title, memo;
+    String schdNum, user_id;
 
     EditText year, month, day;
     EditText setSchdName, setSchdMemo;
@@ -51,7 +53,16 @@ public class AddSchdActivity extends AppCompatActivity {
         setSchdName = findViewById(R.id.setSchdName);
         setSchdMemo = findViewById(R.id.setSchdMemo);
 
-
+        if(getIntent().getBooleanExtra("update", false)){
+            String[] dateArr = getIntent().getStringExtra("time").split("-");
+            year.setText(dateArr[0]);
+            month.setText(dateArr[1]);
+            day.setText(dateArr[2]);
+            setSchdName.setText(getIntent().getStringExtra("title"));
+            setSchdMemo.setText(getIntent().getStringExtra("content"));
+            schdNum = getIntent().getStringExtra("schdNum");
+            user_id = getIntent().getStringExtra("user_id");
+        }
 
         setBtn = findViewById(R.id.setBtn);
         setBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,34 +75,56 @@ public class AddSchdActivity extends AppCompatActivity {
                 if(date.length()<9 || title.length()==0 || memo.length()==0){   // 빈칸 체크 보완 필요
                     checkBlank.setVisibility(View.VISIBLE);
                 } else {
-                    try {
-                        myHelper = new myDBHelper(getApplicationContext());
-                        sqlDB = myHelper.getReadableDatabase();
-                        Cursor cursor;
-                        cursor = sqlDB.rawQuery("SELECT * FROM userTBL;", null);
-                        cursor.moveToNext();
+                    if(getIntent().getBooleanExtra("update", false)){
+                        try {
+                            UpdateSchd task = new UpdateSchd();
+                            String date = year.getText().toString() + "-" + month.getText().toString() + "-" + day.getText().toString();
+                            String result = task.execute(user_id, date, setSchdName.getText().toString(), setSchdMemo.getText().toString(), schdNum).get();
+                            Boolean check = Boolean.parseBoolean(result);
 
-                        String username = cursor.getString(0);
-
-                        cursor.close();
-                        sqlDB.close();
-
-                        AddSchd task = new AddSchd();
-                        String date = year.getText().toString() + "-" + month.getText().toString() + "-" + day.getText().toString();
-                        String result = task.execute(setSchdName.getText().toString(), setSchdMemo.getText().toString(), username, date).get();
-                        Boolean check = Boolean.parseBoolean(result);
-
-                        if(check){
-                            finish();
+                            if(check){
+                                finish();
+                            }
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    }else{
+                        writeSchd();
                     }
                 }
             }
         });
+    }
+
+    public void writeSchd(){
+        try {
+            myHelper = new myDBHelper(getApplicationContext());
+            sqlDB = myHelper.getReadableDatabase();
+            Cursor cursor;
+            cursor = sqlDB.rawQuery("SELECT * FROM userTBL;", null);
+            cursor.moveToNext();
+
+            String username = cursor.getString(0);
+
+            cursor.close();
+            sqlDB.close();
+
+            AddSchd task = new AddSchd();
+            String date = year.getText().toString() + "-" + month.getText().toString() + "-" + day.getText().toString();
+            String result = task.execute(setSchdName.getText().toString(), setSchdMemo.getText().toString(), username, date).get();
+            Boolean check = Boolean.parseBoolean(result);
+
+            if(check){
+                setResult(RESULT_OK);
+                finish();
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public class myDBHelper extends SQLiteOpenHelper {
