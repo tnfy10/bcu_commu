@@ -23,6 +23,7 @@ public class PostDetailActivity extends AppCompatActivity {
     ImageView prevBtn;
     ImageView postProfileImg;
     ImageView deleteBtn;
+    ImageView updateBtn;
     TextView txtWriter;
     TextView txtWriteTime;
     TextView detailPostTitle;
@@ -60,6 +61,7 @@ public class PostDetailActivity extends AppCompatActivity {
             }
         });
 
+        // 게시글 삭제 버튼
         deleteBtn = findViewById(R.id.deleteBtn);
 
         if(getIntent().getBooleanExtra("deleteBtnInvisible", false)){
@@ -70,13 +72,40 @@ public class PostDetailActivity extends AppCompatActivity {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO - 게시글 삭제 버튼
                 board = getIntent().getStringExtra("board");
 
                 if(writer.equals(user_id)){
                     deleteAlert(v);
                 }else{
                     Toast.makeText(getApplicationContext(), "본인 게시글만 삭제 가능합니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        
+        // 게시글 수정 버튼
+        updateBtn = findViewById(R.id.updateBtn);
+        if(getIntent().getBooleanExtra("updateBtnInvisible", false)){
+            updateBtn.setVisibility(View.INVISIBLE);
+        }else{
+            updateBtn.setVisibility(View.VISIBLE);
+        }
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                board = getIntent().getStringExtra("board");
+                post_num = getIntent().getStringExtra("postNum");
+
+                if(writer.equals(user_id)){
+                    Intent updateIntent = new Intent(getApplicationContext(), WirtePostActivity.class);
+                    updateIntent.putExtra("writer", writer);
+                    updateIntent.putExtra("title", title);
+                    updateIntent.putExtra("content", content);
+                    updateIntent.putExtra("postNum", post_num);
+                    updateIntent.putExtra("board", board);
+                    updateIntent.putExtra("update", true);
+                    startActivity(updateIntent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "본인 게시글만 수정 가능합니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

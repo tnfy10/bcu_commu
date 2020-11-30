@@ -50,6 +50,7 @@ public class NoticeActivity extends AppCompatActivity {
                 detailIntent.putExtra("title", item.getTitle());
                 detailIntent.putExtra("content", item.getContent());
                 detailIntent.putExtra("deleteBtnInvisible", true);
+                detailIntent.putExtra("updateBtnInvisible", true);
                 startActivity(detailIntent);
             }
         });
