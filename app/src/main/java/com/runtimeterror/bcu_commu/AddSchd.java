@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Register extends AsyncTask<String, Void, String> {
+public class AddSchd extends AsyncTask<String, Void, String> {
     String sendMsg, receiveMsg;
 
     @Override
@@ -18,7 +18,7 @@ public class Register extends AsyncTask<String, Void, String> {
         try {
             String str;
 
-            URL url = new URL("http://" + IpAddress.ip + "/android/register.jsp");
+            URL url = new URL("http://" + IpAddress.ip + "/android/scheduleAdd.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -26,7 +26,8 @@ public class Register extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "id=" + strings[0] + "&stdNum=" + strings[1] + "&pw=" + strings[2] + "&name=" + strings[3];
+            sendMsg = "scheduleName=" + strings[0] + "&scheduleContent=" + strings[1] + "&username=" + strings[2] + "&date=" + strings[3];
+
             osw.write(sendMsg);
             osw.flush();
 
