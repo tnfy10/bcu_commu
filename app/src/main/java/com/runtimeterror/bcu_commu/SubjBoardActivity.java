@@ -63,7 +63,6 @@ public class SubjBoardActivity extends AppCompatActivity {
         postList.setLayoutManager(layoutManager);
         final PostAdapter postAdapter = new PostAdapter();
 
-        Collections.reverse(postArray);
         for(int i=0; i<postArray.size(); i++){
             String[] subjBoard = postArray.get(i);
             postAdapter.addItem(new Post(subjBoard[2], subjBoard[3], subjBoard[0], subjBoard[1], subjBoard[4]));

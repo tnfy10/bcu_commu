@@ -64,7 +64,6 @@ public class FreeBoardActivity extends AppCompatActivity {
         postList.setLayoutManager(layoutManager);
         final PostAdapter postAdapter = new PostAdapter();
 
-        Collections.reverse(postArray);
         for(int i=0; i<postArray.size(); i++){
             String[] freeBoard = postArray.get(i);
             postAdapter.addItem(new Post(freeBoard[2], freeBoard[3], freeBoard[0], freeBoard[1], freeBoard[4]));

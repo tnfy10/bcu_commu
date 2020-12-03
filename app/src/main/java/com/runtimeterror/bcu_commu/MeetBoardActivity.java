@@ -63,7 +63,6 @@ public class MeetBoardActivity extends AppCompatActivity {
         postList.setLayoutManager(layoutManager);
         final PostAdapter postAdapter = new PostAdapter();
 
-        Collections.reverse(postArray);
         for(int i=0; i<postArray.size(); i++){
             String[] meetBoard = postArray.get(i);
             postAdapter.addItem(new Post(meetBoard[2], meetBoard[3], meetBoard[0], meetBoard[1], meetBoard[4]));

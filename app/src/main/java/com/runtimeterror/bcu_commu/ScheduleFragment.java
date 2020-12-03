@@ -90,7 +90,6 @@ public class ScheduleFragment extends Fragment implements OnBackPressedListener{
         });
 
         // 데이터 받아오면 추가
-        Collections.reverse(schdArray);
         for(int i=0; i<schdArray.size(); i++){
             String[] schedule = schdArray.get(i);
             scheduleAdapter.addItem(new Schedule(schedule[2], schedule[1], schedule[3], schedule[0]));
