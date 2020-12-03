@@ -35,13 +35,13 @@ public class WirtePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wirte_post);
 
+        edtPostName = findViewById(R.id.edtPostName);
+        edtPost = findViewById(R.id.edtPost);
+
         if(getIntent().getBooleanExtra("update", false)){
             edtPostName.setText(getIntent().getStringExtra("title"));
             edtPost.setText(getIntent().getStringExtra("content"));
         }
-
-        edtPostName = findViewById(R.id.edtPostName);
-        edtPost = findViewById(R.id.edtPost);
 
         prevBtn = findViewById(R.id.prevBtn);
         prevBtn.setOnClickListener(new View.OnClickListener() {
