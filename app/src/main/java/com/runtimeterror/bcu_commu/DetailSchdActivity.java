@@ -91,7 +91,6 @@ public class DetailSchdActivity extends AppCompatActivity {
 
     public void deleteAlert(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-        builder.setTitle("회원탈퇴");
         builder.setMessage("정말로 삭제 하시겠습니까?");
         builder.setPositiveButton("확인",
                 new DialogInterface.OnClickListener() {
