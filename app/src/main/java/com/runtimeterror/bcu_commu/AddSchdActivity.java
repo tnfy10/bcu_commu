@@ -84,6 +84,9 @@ public class AddSchdActivity extends AppCompatActivity {
 
                             if(check){
                                 finish();
+                                Intent schdIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                schdIntent.putExtra("schd", true);
+                                startActivity(schdIntent);
                             }
                         } catch (ExecutionException e) {
                             e.printStackTrace();
@@ -117,8 +120,10 @@ public class AddSchdActivity extends AppCompatActivity {
             Boolean check = Boolean.parseBoolean(result);
 
             if(check){
-                setResult(RESULT_OK);
                 finish();
+                Intent schdIntent = new Intent(getApplicationContext(), MainActivity.class);
+                schdIntent.putExtra("schd", true);
+                startActivity(schdIntent);
             }
         } catch (ExecutionException e) {
             e.printStackTrace();

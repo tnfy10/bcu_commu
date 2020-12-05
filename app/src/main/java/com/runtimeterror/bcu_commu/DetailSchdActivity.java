@@ -60,9 +60,6 @@ public class DetailSchdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteAlert(v);
-                // 삭제를 완료한 직후 일정으로 돌아오면 일정이 지워지지 않는 이상 발생
-                // DB에는 무사히 지워진 상태로 화면을 다른 곳으로 넘겼다가 돌아오면 지워지긴 하는 것이 확인됨
-                // 이외에도 안드로이드 콘솔창에 json 에러 문구가 출력되면서 일정이 2개가 생기는 경우가 발생됨
             }
         });
 
@@ -87,6 +84,9 @@ public class DetailSchdActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+        Intent schdIntent = new Intent(getApplicationContext(), MainActivity.class);
+        schdIntent.putExtra("schd", true);
+        startActivity(schdIntent);
     }
 
     public void deleteAlert(View v){
@@ -102,6 +102,9 @@ public class DetailSchdActivity extends AppCompatActivity {
                             Log.d("check", check.toString());
                             if(check) {
                                 finish();
+                                Intent schdIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                schdIntent.putExtra("schd", true);
+                                startActivity(schdIntent);
                             }
                         } catch (ExecutionException e) {
                             e.printStackTrace();

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -23,15 +24,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         homeFragment = new HomeFragment();
         setFragment = new SetFragment();
 
-        String chgSchd = getIntent().getStringExtra("schd");
+        if(getIntent().getBooleanExtra("schd", false)){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new ScheduleFragment()).commit();
+            Menu menu = bottomNavigationView.getMenu();
+            menu.findItem(R.id.tabSchedule).setChecked(true);
+        }else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+        }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

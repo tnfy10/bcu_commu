@@ -85,7 +85,8 @@ public class ScheduleFragment extends Fragment implements OnBackPressedListener{
             @Override
             public void onClick(View v) {
                 Intent addIntent = new Intent(scheduleView.getContext(), AddSchdActivity.class);
-                startActivityForResult(addIntent, 1);
+                getActivity().finish();
+                startActivity(addIntent);
             }
         });
 
@@ -105,6 +106,7 @@ public class ScheduleFragment extends Fragment implements OnBackPressedListener{
                 detailIntent.putExtra("content", item.getMemo());
                 detailIntent.putExtra("schdNum", item.getSchdNum());
                 detailIntent.putExtra("user_id", id);
+                getActivity().finish();
                 startActivity(detailIntent);
             }
         });
@@ -186,17 +188,5 @@ public class ScheduleFragment extends Fragment implements OnBackPressedListener{
     @Override public void onResume() {
         super.onResume();
         activity.setOnBackPressedListener(this);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==1){
-            if(resultCode==RESULT_OK){
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(this).attach(this).commit();
-            }
-        }
     }
 }
