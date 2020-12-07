@@ -42,7 +42,7 @@ public class AddSchdActivity extends AppCompatActivity {
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
 
@@ -144,5 +144,13 @@ public class AddSchdActivity extends AppCompatActivity {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent schdIntent = new Intent(getApplicationContext(), MainActivity.class);
+        schdIntent.putExtra("schd", true);
+        startActivity(schdIntent);
     }
 }

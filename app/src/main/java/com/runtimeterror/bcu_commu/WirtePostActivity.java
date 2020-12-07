@@ -30,6 +30,10 @@ public class WirtePostActivity extends AppCompatActivity {
     SQLiteDatabase sqlDB;
     myDBHelper myHelper;
 
+    Boolean freeBoard;
+    Boolean meetBoard;
+    Boolean subjBoard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,10 @@ public class WirtePostActivity extends AppCompatActivity {
             edtPostName.setText(getIntent().getStringExtra("title"));
             edtPost.setText(getIntent().getStringExtra("content"));
         }
+
+        freeBoard = getIntent().getBooleanExtra("freeBoard", false);
+        meetBoard = getIntent().getBooleanExtra("meetBoard", false);
+        subjBoard = getIntent().getBooleanExtra("subjBoard", false);
 
         prevBtn = findViewById(R.id.prevBtn);
         prevBtn.setOnClickListener(new View.OnClickListener() {
@@ -93,10 +101,6 @@ public class WirtePostActivity extends AppCompatActivity {
         String postdate = format.format(time.getTime());
 
         Post post = new Post(edtPostName.getText().toString(), edtPost.getText().toString(), userId, postdate);
-
-        Boolean freeBoard = getIntent().getBooleanExtra("freeBoard", false);
-        Boolean meetBoard = getIntent().getBooleanExtra("meetBoard", false);
-        Boolean subjBoard = getIntent().getBooleanExtra("subjBoard", false);
 
         if(freeBoard) {
             try {
@@ -193,7 +197,18 @@ public class WirtePostActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        if(freeBoard) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), FreeBoardActivity.class));
+        }
+        else if(meetBoard) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), MeetBoardActivity.class));
+        }
+        else if(subjBoard) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), SubjBoardActivity.class));
+        }
     }
 
     public class myDBHelper extends SQLiteOpenHelper {
